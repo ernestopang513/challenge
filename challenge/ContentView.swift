@@ -24,24 +24,7 @@ struct USDZView: UIViewRepresentable {
             ambientLightNode.light = ambientLight
             scene.rootNode.addChildNode(ambientLightNode)
 
-            // Añadir múltiples luces omnidireccionales
-            let lightPositions: [SCNVector3] = [
-                SCNVector3(10, 10, 10),
-                SCNVector3(-10, 10, 10),
-                SCNVector3(10, -10, 10),
-                SCNVector3(-10, -10, 10)
-            ]
             
-            for position in lightPositions {
-                let light = SCNLight()
-                light.type = .omni // Tipo de luz omnidireccional
-                light.color = UIColor.white // Color de la luz
-                let lightNode = SCNNode()
-                lightNode.light = light
-                lightNode.position = position // Posiciones de las luces
-                scene.rootNode.addChildNode(lightNode)
-            }
-
             // Configurar la vista de la escena
             sceneView.scene = scene
             sceneView.allowsCameraControl = true // Permitir el control de la cámara
