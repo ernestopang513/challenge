@@ -52,44 +52,32 @@ struct ContentView: View {
         VStack {
             USDZView(modelName: "herbamex")
                 .frame(height: 600) // Establecer altura de la vista
+                .ignoresSafeArea()
 //                .edgesIgnoringSafeArea(.all)
 //            Text("Modelo Earth Cargado")
 //                .font(.headline)
 //                .padding()
             ScrollView{
-                VStack {
-                    Button{} label: {
-                        Text("Reporte")
-                            .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                            .foregroundColor(.black)
-                    }
-                    .background(.thinMaterial)
-//                    .padding(.bottom, 30)
-                    Button{} label: {
-                        Text("Medidas")
-                            .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                            .foregroundColor(.black)
-                    }
-                    .background(.thinMaterial)
-                    
-                    Button{} label: {
-                        Text("Medidas")
-                            .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                            .foregroundColor(.black)
-                    }
-                    .background(.thinMaterial)
-                    Button{} label: {
-                        Text("Medidas")
-                            .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                            .foregroundColor(.black)
-                    }
-                    .background(.thinMaterial)
-                }
                 
-//                Spacer()
+                let colums = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
+                
+                LazyVGrid(columns: colums, spacing: 30) {
+                    ForEach(0 ..< 4){
+                        index in
+                        Button {} label: {
+                            Text("Botón \(index + 1)")
+                                .padding(16)
+                                .foregroundColor(.black)
+                        }
+                        .background(.thinMaterial)
+                        .cornerRadius(8)
+                    }
+                }
+                .padding()
             }
             .frame(maxWidth: .infinity)
             .background(.red)
+            
 //            .padding(.top, 30)
             //        .padding()
         }
