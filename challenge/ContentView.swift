@@ -11,31 +11,33 @@ struct USDZView: UIViewRepresentable {
     
     
     func makeUIView(context: Context) -> SCNView {
-            let sceneView = SCNView()
-            
-            // Cargar la escena con el modelo USDZ
-            let scene = SCNScene(named: "\(modelName).usdz")!
+        let sceneView = SCNView()
+        
+        let scene = SCNScene(named: "\(modelName).usdz")!
+        
+        // Añadir luz ambiental
+        let ambientLight = SCNLight()
+        ambientLight.type = .ambient
+        ambientLight.color = UIColor.white
+        let ambientLightNode = SCNNode()
+        ambientLightNode.light = ambientLight
+        scene.rootNode.addChildNode(ambientLightNode)
+        
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        cameraNode.position = SCNVector3(0,0,2)
+        
+        scene.rootNode.addChildNode(cameraNode)
+        
+        sceneView.scene = scene
+        sceneView.allowsCameraControl = true
+        sceneView.showsStatistics = false
+        sceneView.backgroundColor = UIColor.blue
 
-            // Añadir luz ambiental
-            let ambientLight = SCNLight()
-            ambientLight.type = .ambient // Tipo de luz ambiental
-            ambientLight.color = UIColor.white // Color de la luz
-            let ambientLightNode = SCNNode()
-            ambientLightNode.light = ambientLight
-            scene.rootNode.addChildNode(ambientLightNode)
-
-            
-            // Configurar la vista de la escena
-            sceneView.scene = scene
-            sceneView.allowsCameraControl = true // Permitir el control de la cámara
-            sceneView.showsStatistics = false // Mostrar estadísticas de la escena
-            sceneView.backgroundColor = UIColor.clear // Fondo transparente
-
-            return sceneView
-        }
+        return sceneView
+    }
     
     func updateUIView(_ uiView: SCNView, context: Context) {
-        // Actualizaciones de la vista si es necesario
     }
 }
 
@@ -48,13 +50,12 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            // Cambia "Earth" por el nombre de tu archivo USDZ sin la extensión
-            USDZView(modelName: "Earth")
-                .frame(height: 400) // Establecer altura de la vista
-                .edgesIgnoringSafeArea(.all) // Ignorar áreas seguras
-            Text("Modelo Earth Cargado")
-                .font(.headline)
-                .padding()
+            USDZView(modelName: "herbamex")
+                .frame(height: 600) // Establecer altura de la vista
+//                .edgesIgnoringSafeArea(.all)
+//            Text("Modelo Earth Cargado")
+//                .font(.headline)
+//                .padding()
             ScrollView{
                 VStack {
                     Button{} label: {
@@ -84,8 +85,11 @@ struct ContentView: View {
                     }
                     .background(.thinMaterial)
                 }
+                
 //                Spacer()
             }
+            .frame(maxWidth: .infinity)
+            .background(.red)
 //            .padding(.top, 30)
             //        .padding()
         }
