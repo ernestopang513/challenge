@@ -43,21 +43,30 @@ struct USDZView: UIViewRepresentable {
 
 struct ContentView: View {
     
-    var a: (Int) -> Int = { _ in
-            print("hola")
-        return 5
-    }
-    
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
+            
             USDZView(modelName: "herbamex")
-                .frame(height: 600) // Establecer altura de la vista
-                .ignoresSafeArea()
+                .frame(height: 600)
+                .ignoresSafeArea(.all)
+                .background(.red)
+            
+            /*posible solocion
+             
+                .position(x:150,y: 150)
+                .ignoresSafeArea(.all)
+                .background(.red)
+            */
 //                .edgesIgnoringSafeArea(.all)
 //            Text("Modelo Earth Cargado")
 //                .font(.headline)
 //                .padding()
-            ScrollView{
+//            ScrollView{
+            
+            
+            
+            
+            VStack{
                 
                 let colums = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
                 
@@ -75,8 +84,12 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .frame(maxWidth: .infinity)
+//            .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity , maxHeight: .infinity)
             .background(.red)
+            
+            
+            
             
 //            .padding(.top, 30)
             //        .padding()
