@@ -43,6 +43,9 @@ struct USDZView: UIViewRepresentable {
 
 struct ContentView: View {
     
+    @State private var showSheet = false
+    @State private var selectButtonIndex: Int? = nil
+    
     var body: some View {
         VStack(spacing: 0) {
             
@@ -50,22 +53,6 @@ struct ContentView: View {
                 .frame(height: 600)
                 .ignoresSafeArea(.all)
                 .background(.red)
-            
-            /*posible solocion
-             
-                .position(x:150,y: 150)
-                .ignoresSafeArea(.all)
-                .background(.red)
-            */
-//                .edgesIgnoringSafeArea(.all)
-//            Text("Modelo Earth Cargado")
-//                .font(.headline)
-//                .padding()
-//            ScrollView{
-            
-            
-            
-            
             VStack{
                 
                 let colums = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
@@ -73,29 +60,46 @@ struct ContentView: View {
                 LazyVGrid(columns: colums, spacing: 30) {
                     ForEach(0 ..< 4){
                         index in
-                        Button {} label: {
-                            Text("Botón \(index + 1)")
-                                .padding(16)
-                                .foregroundColor(.black)
+                        Button (action: {
+                            selectButtonIndex = index
+                            showSheet = true
+                        }){
+                            Text("Boton \(index + 1)")
+                                .padding()
+                                .background(.thinMaterial)
+                                .cornerRadius(8)
                         }
-                        .background(.thinMaterial)
-                        .cornerRadius(8)
+                        
                     }
                 }
                 .padding()
             }
-//            .frame(maxWidth: .infinity)
-                .frame(maxWidth: .infinity , maxHeight: .infinity)
+            .frame(maxWidth: .infinity , maxHeight: .infinity)
             .background(.red)
             
-            
-            
-            
-//            .padding(.top, 30)
-            //        .padding()
+        }
+        .sheet(isPresented: Binding(
+                    get: { showSheet && selectButtonIndex != nil },
+                    set: { showSheet = $0 }
+                )){
+            if let index = selectButtonIndex{
+                switch index {
+                case 0:
+                    boton1()
+                case 1:
+                    boton2()
+                case 2:
+                    boton1()
+                case 3:
+                    boton1()
+                default:
+                    Text("Error: Vista no encontrada")
+                }
+            }
         }
     }
 }
+
 
 #Preview {
     ContentView()
