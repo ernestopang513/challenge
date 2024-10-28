@@ -23,9 +23,9 @@ struct boton2: View {
                 
                 Text("Amound")
             }
-            .navigationTitle("Titulo boton2")
+            .navigationTitle("Riega")
             .toolbar{
-                Button("Save") {
+                Button("Ok") {
                     dismiss()
                 }
             }

@@ -1,13 +1,13 @@
 //
-//  boton1.swift
+//  boton0.swift
 //  challenge
 //
-//  Created by Ernesto Pang on 24/10/24.
+//  Created by Ernesto Pang on 28/10/24.
 //
 
 import SwiftUI
 
-struct boton1: View {
+struct boton0: View {
     @Environment(\.dismiss ) var dismiss
     
     
@@ -23,7 +23,7 @@ struct boton1: View {
                 
                 Text("Amound")
             }
-            .navigationTitle("Medidas")
+            .navigationTitle("Reporte")
             .toolbar{
                 Button("Ok") {
                     dismiss()
@@ -34,5 +34,5 @@ struct boton1: View {
 }
 
 #Preview {
-    boton1()
+    boton0()
 }

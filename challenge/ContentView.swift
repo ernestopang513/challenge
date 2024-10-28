@@ -85,13 +85,13 @@ struct ContentView: View {
             if let index = selectButtonIndex{
                 switch index {
                 case 0:
-                    boton1()
+                    boton0()
                 case 1:
-                    boton2()
+                    boton1()
                 case 2:
-                    boton1()
+                    boton2()
                 case 3:
-                    boton1()
+                    boton0()
                 default:
                     Text("Error: Vista no encontrada")
                 }
