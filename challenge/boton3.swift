@@ -9,7 +9,8 @@ import SwiftUI
 
 struct boton3: View {
     @Environment(\.dismiss) var dismiss
-    @State private var isLightOn = false // Controla si el foco está encendido o apagado
+    @State private var isLightOn = false
+    @State private var intensity: Double = 0 // Controla la intensidad de la luz
     @State private var animateBounce = false
     
     var body: some View {
@@ -18,12 +19,16 @@ struct boton3: View {
                 Spacer()
                 
                 Button(action: {
-                    // Genera la vibración al presionar
                     let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
                     impactFeedback.impactOccurred()
                     
-                    // Alterna el estado de la luz (encendido/apagado)
+                    // Alterna el estado de encendido
                     isLightOn.toggle()
+                    
+                    // Reinicia la intensidad si la luz se enciende por primera vez
+                    if isLightOn && intensity == 0 {
+                        intensity = 25
+                    }
                     
                     // Activa la animación de rebote
                     withAnimation(
@@ -38,11 +43,47 @@ struct boton3: View {
                     
                     print("Control luz")
                 }) {
-                    Image(isLightOn ? "focoLuz" : "foco") // Cambia la imagen según el estado
+                    Image(isLightOn ? "focoLuz" : "foco")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 250)
-                        .scaleEffect(animateBounce ? 0.8 : 1.0) // Efecto de rebote
+                        .frame(width: 350)
+                        .scaleEffect(animateBounce ? 0.8 : 1.0)
+                        .opacity(isLightOn ? intensity / 100 : 1) // Ajusta opacidad
+                }
+                
+                Spacer()
+                
+                // Control de Intensidad
+                if isLightOn {
+                    VStack {
+                        Text("Intensidad: \(Int(intensity))%")
+                        
+                        HStack {
+                            Button(action: {
+                                if intensity > 0 {
+                                    intensity -= 25 // Disminuir intensidad
+                                }
+                            }) {
+                                Text("-")
+                                    .font(.largeTitle)
+                                    .padding()
+                                    .background(Color.gray.opacity(0.2))
+                                    .clipShape(Circle())
+                            }
+                            
+                            Button(action: {
+                                if intensity < 100 {
+                                    intensity += 25 // Aumentar intensidad
+                                }
+                            }) {
+                                Text("+")
+                                    .font(.largeTitle)
+                                    .padding()
+                                    .background(Color.gray.opacity(0.2))
+                                    .clipShape(Circle())
+                            }
+                        }
+                    }
                 }
                 
                 Spacer()
