@@ -19,9 +19,30 @@ struct boton0: View {
     var body: some View {
         NavigationStack{
             Form {
-                Text("Name")
-                
-                Text("Amound")
+                HStack{
+                    Spacer()
+                    Image("graphTemp")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250)
+                    Spacer()
+                }
+                HStack{
+                    Spacer()
+                    Image("lineaMatPlot")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250)
+                    Spacer()
+                }
+                HStack{
+                    Spacer()
+                    Image("barrasTemp")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250)
+                    Spacer()
+                }
             }
             .navigationTitle("Reporte")
             .toolbar{

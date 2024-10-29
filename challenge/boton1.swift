@@ -18,11 +18,40 @@ struct boton1: View {
     
     var body: some View {
         NavigationStack{
-            Form {
-                Text("Name")
                 
-                Text("Amound")
-            }
+                    VStack{
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            Text("Temperatura")
+                            Spacer()
+                            Text("20 °C")
+                            Spacer()
+                        }
+                        Spacer()
+                        
+                        HStack{
+                            Spacer()
+                            Text("Humedad")
+                            Spacer()
+                            Text("20 %")
+                            Spacer()
+                        }
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            Image("humedad")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 250)
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                    
+                
+                
+            
             .navigationTitle("Medidas")
             .toolbar{
                 Button("Ok") {
