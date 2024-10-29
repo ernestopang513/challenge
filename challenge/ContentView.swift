@@ -64,12 +64,11 @@ struct ContentView: View {
                             selectButtonIndex = index
                             showSheet = true
                         }){
-                            Text("Boton \(index + 1)")
+                            Text("\(label(for: index))")
                                 .padding()
                                 .background(.thinMaterial)
                                 .cornerRadius(8)
                         }
-                        
                     }
                 }
                 .padding()
@@ -91,7 +90,7 @@ struct ContentView: View {
                 case 2:
                     boton2()
                 case 3:
-                    boton0()
+                    boton3()
                 default:
                     Text("Error: Vista no encontrada")
                 }
@@ -100,6 +99,20 @@ struct ContentView: View {
     }
 }
 
+func label(for index: Int) -> String {
+    switch index {
+    case 0:
+        return "Reporte"
+    case 1:
+        return "Medidas"
+    case 2:
+        return "Riego"
+    case 3:
+        return "Luz"
+    default:
+        return "Opción"
+    }
+}
 
 #Preview {
     ContentView()

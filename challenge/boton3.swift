@@ -1,5 +1,5 @@
 //
-//  boton2.swift
+//  boton3.swift
 //  challenge
 //
 //  Created by Ernesto Pang on 28/10/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct boton2: View {
+struct boton3: View {
     @Environment(\.dismiss ) var dismiss
     
     
@@ -18,17 +18,12 @@ struct boton2: View {
     
     var body: some View {
         NavigationStack{
-            VStack {
-                Spacer()
-                Image("agua")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 250)
-                Spacer()
-                Spacer()
+            Form {
+                Text("Name")
+                
                 Text("Amound")
             }
-            .navigationTitle("Riega")
+            .navigationTitle("Luz")
             .toolbar{
                 Button("Ok") {
                     dismiss()
@@ -39,5 +34,5 @@ struct boton2: View {
 }
 
 #Preview {
-    boton2()
+    boton3()
 }
