@@ -15,6 +15,10 @@ struct USDZView: UIViewRepresentable {
         
         let scene = SCNScene(named: "\(modelName).usdz")!
         
+        if let backgroundImage = UIImage(named: "fondo"){
+            scene.background.contents = backgroundImage
+        }
+        
         // Añadir luz ambiental
         let ambientLight = SCNLight()
         ambientLight.type = .ambient
@@ -25,7 +29,7 @@ struct USDZView: UIViewRepresentable {
         
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(0,0,2)
+        cameraNode.position = SCNVector3(-0.02,0,2)
         
         scene.rootNode.addChildNode(cameraNode)
         
@@ -52,7 +56,7 @@ struct ContentView: View {
             USDZView(modelName: "herbamex")
                 .frame(height: 600)
                 .ignoresSafeArea(.all)
-                .background(.red)
+//                .background(.red)
             VStack{
                 
                 let colums = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
@@ -74,7 +78,12 @@ struct ContentView: View {
                 .padding()
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity)
-            .background(.yellow)
+            .background(
+                Image("madera")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            )
             
         }
         .sheet(isPresented: Binding(
