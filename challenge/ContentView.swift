@@ -74,7 +74,7 @@ struct ContentView: View {
                 .padding()
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity)
-            .background(.red)
+            .background(.yellow)
             
         }
         .sheet(isPresented: Binding(

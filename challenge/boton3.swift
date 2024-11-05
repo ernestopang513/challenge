@@ -22,15 +22,12 @@ struct boton3: View {
                     let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
                     impactFeedback.impactOccurred()
                     
-                    // Alterna el estado de encendido
                     isLightOn.toggle()
                     
-                    // Reinicia la intensidad si la luz se enciende por primera vez
                     if isLightOn && intensity == 0 {
                         intensity = 25
                     }
                     
-                    // Activa la animación de rebote
                     withAnimation(
                         Animation.easeInOut(duration: 0.1)
                             .repeatCount(3, autoreverses: true)
@@ -48,20 +45,19 @@ struct boton3: View {
                         .scaledToFit()
                         .frame(width: 350)
                         .scaleEffect(animateBounce ? 0.8 : 1.0)
-                        .opacity(isLightOn ? intensity / 100 : 1) // Ajusta opacidad
+                        .opacity(isLightOn ? intensity / 100 : 1)
                 }
                 
                 Spacer()
                 
-                // Control de Intensidad
                 if isLightOn {
                     VStack {
                         Text("Intensidad: \(Int(intensity))%")
                         
                         HStack {
                             Button(action: {
-                                if intensity > 0 {
-                                    intensity -= 25 // Disminuir intensidad
+                                if intensity > 25 {
+                                    intensity -= 25
                                 }
                             }) {
                                 Text("-")
@@ -73,7 +69,7 @@ struct boton3: View {
                             
                             Button(action: {
                                 if intensity < 100 {
-                                    intensity += 25 // Aumentar intensidad
+                                    intensity += 25
                                 }
                             }) {
                                 Text("+")
