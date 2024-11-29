@@ -69,10 +69,13 @@ struct ContentView: View {
                             showSheet = true
                         }){
                             Text("\(label(for: index))")
+                                .frame(maxWidth: .infinity)
                                 .padding()
                                 .background(.thinMaterial)
                                 .cornerRadius(8)
                         }
+                        .frame(width: 100)
+                        .foregroundColor(.white)
                     }
                 }
                 .padding()
